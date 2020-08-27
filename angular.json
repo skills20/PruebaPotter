@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "pruebaPotter"
+    }
+  },
+  "defaultProject": "pruebaPotter",
+  "cli": {
+    "analytics": false
+  }
 }
