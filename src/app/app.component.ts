@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { WebApiService } from './services/web-api.service'
 
 @Component({
   selector: 'app-root',
@@ -9,23 +9,46 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent implements OnInit {
   title = 'pruebaPotter';
   characters = null;
-  key = "key=$2a$10$Q9NBGlw4eHGx9kr.ksEosOYmY.FCkUtoCBafK3.3aKauOG6HNraa6";
-  api_url = `https://www.potterapi.com/v1/characters?${this.key}`;
+  studentsGryffindor = [];
+  studentsSlythering = [];
+  studentsHufflepuff = [];
+  studentsRavenclaw = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private webApi: WebApiService) { }
 
   ngOnInit() {
     this.fetchData();
+
   }
 
   fetchData() {
-    const promise = this.http.get(this.api_url).toPromise();
-    console.log(promise);
+    const promise = this.webApi.fetchData();
 
     promise.then((data) => {
       this.characters = data;
+      this.fillHouses(this.characters);
     }).catch((error) => {
-      console.log("Promise rejected with " + JSON.stringify(error));
+    });
+  }
+
+  fillHouses(characters) {
+    characters.forEach(character => {
+      switch (character.house) {
+        case "Gryffindor":
+          this.studentsGryffindor.push(character);
+          break;
+        case "Slytherin":
+          this.studentsSlythering.push(character);
+          break;
+        case "Hufflepuff":
+          this.studentsHufflepuff.push(character);
+          break;
+        case "Ravenclaw":
+          this.studentsRavenclaw.push(character);
+          break;
+        default:
+
+      }
     });
   }
 

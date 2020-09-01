@@ -1,11 +1,45 @@
-<div *ngIf="characters!=null; else espera">
-  <table border="1">
+<div class="row d-inline-flex p-2">
+  <div class="card border-secondary col-mb-3" style="max-width: 20rem;">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <img class="img" src="https://wallpaperplay.com/walls/full/e/7/8/176464.jpg" />
+      <p class="card-text" *ngIf="studentsGryffindor!==null else espera"># Students: {{studentsGryffindor.length}}</p>
+    </div>
+  </div>
+
+  <div class="card border-secondary col-mb-3" style="max-width: 20rem;">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <img class="img" src="https://wallpaperplay.com/walls/full/8/c/9/3137.jpg" />
+      <p class="card-text" *ngIf="studentsSlythering!==null else espera"># Students: {{studentsSlythering.length}}</p>
+    </div>
+  </div>
+
+  <div class="card border-secondary col-mb-3" style="max-width: 20rem;">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <img class="img" src="https://wallpapercave.com/wp/wp1958756.jpg" />
+      <p class="card-text" *ngIf="studentsHufflepuff!==null else espera"># Students: {{studentsHufflepuff.length}}</p>
+    </div>
+  </div>
+
+  <div class="card border-secondary col-mb-3" style="max-width: 20rem;">
+    <div class="card-header"></div>
+    <div class="card-body">
+      <img class="img" src="https://crystalbridges.org/wp-content/uploads/2019/07/ravenclaw.jpg" />
+      <p class="card-text" *ngIf="studentsRavenclaw!==null else espera"># Students: {{studentsRavenclaw.length}}</p>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="characters!=null; else espera" class="row col-mb-12">
+  <table border="1" class="table table-hover">
     <tr>
-      <td>Name</td>
-      <td>House</td>
-      <td>Patronus</td>
+      <td scope="col">Name</td>
+      <td scope="col">House</td>
+      <td scope="col">Patronus</td>
     </tr>
-    <tr *ngFor="let char of characters">
+    <tr *ngFor="let char of characters" scope="row">
       <td>{{char.name}}</td>
       <td>{{char.house}}</td>
       <td>{{char.patronus}}</td>
