@@ -13,12 +13,14 @@ export class AppComponent implements OnInit {
   studentsSlythering = [];
   studentsHufflepuff = [];
   studentsRavenclaw = [];
+  displayedColumns: string[] = ['name', 'house', 'patronus'];
+  dataSource = null;
+
 
   constructor(private webApi: WebApiService) { }
 
   ngOnInit() {
     this.fetchData();
-
   }
 
   fetchData() {
@@ -52,5 +54,27 @@ export class AppComponent implements OnInit {
     });
   }
 
+  getStudentsList(house) {
+    switch (house) {
+      case "Gryffindor":
+        this.dataSource = this.studentsGryffindor;
+        break;
+      case "Slytherin":
+        this.dataSource = this.studentsSlythering;
+        break;
+      case "Hufflepuff":
+        this.dataSource = this.studentsHufflepuff;
+        break;
+      case "Ravenclaw":
+        this.dataSource = this.studentsRavenclaw;
+        break;
+      default:
+    }
+  }
+}
 
+export interface Characters {
+  name: string;
+  house: string;
+  patronus: string;
 }
